@@ -2,12 +2,13 @@ import translator as tr
 
 t = tr.Translator()
 
+t.loadDictionary("dictionary.txt")
 
 while(True):
 
     t.printMenu()
 
-    t.loadDictionary("dictionary.txt")
+    #t.loadDictionary("dictionary.txt")
 
     txtIn = input()
 
@@ -19,7 +20,7 @@ while(True):
         print("Ok, quale parola devo aggiungere?")
         txtIn = input()
         txtIn.lower()
-        t.handleAdd(txtIn)
+        t.handleAdd(txtIn, "dictionary.txt")
         continue
     if int(txtIn) == 2:
         print("Ok, quale parola vuoi tradurre?")

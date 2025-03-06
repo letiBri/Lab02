@@ -2,7 +2,7 @@ class Dictionary:
     def __init__(self, dizionario={}):
         self.dizionario = dizionario
 
-    def addWord(self, parolaAliena, parolaItaliana):
+    def addWord(self, parolaAliena, parolaItaliana, dict):
         existing = False
         for key in self.dizionario:
             if key == parolaAliena:
@@ -10,6 +10,8 @@ class Dictionary:
                 print("Parola già inserita")
         if not existing:
             self.dizionario[parolaAliena] = parolaItaliana
+            with open(dict, "a+") as file:
+                file.write(f"{parolaAliena} {parolaItaliana}\n")
             print(f"['{parolaAliena}', '{parolaItaliana}']")
             print("Aggiunta!")
     def translate(self, parolaAliena):

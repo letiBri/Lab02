@@ -22,15 +22,16 @@ class Translator:
             dizTraduzioni = {}
             for i in listaRighe:
                 campi = i.split(" ")
-                dizTraduzioni[campi[0]] = campi[1]
+                if campi[0] != "":
+                    dizTraduzioni[campi[0]] = campi[1]
         self.dizFinale = diz.Dictionary(dizTraduzioni)
         return self.dizFinale
 
-    def handleAdd(self, entry):
+    def handleAdd(self, entry, dict):
         # entry is a tuple <parola_aliena> <traduzione1 traduzione2 ...>
         parolaAliena = entry.split(" ")[0]
-        parolaItaliane = entry.split(" ")[1::]
-        self.dizFinale.addWord(parolaAliena, parolaItaliane)
+        paroleItaliane = entry.split(" ")[1::]
+        self.dizFinale.addWord(parolaAliena, paroleItaliane, dict)
 
     def handleTranslate(self, query):
         # query is a string <parola_aliena>
@@ -43,4 +44,3 @@ class Translator:
         parte1 = query.split("?")[0]
         parte2 = query.split("?")[1]
         self.dizFinale.translateWordWildCard(parte1, parte2, indice)
-
